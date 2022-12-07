@@ -1,0 +1,76 @@
+{
+    "name": "qinkun",
+    "version": "0.1.0",
+    "description": "My Electron app",
+    "main": "dist/electron/electron/main.js",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "start": "electron ./dist/electron/electron/main.js",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "package": "electron-builder",
+        "win32": "electron-builder --win --x32",
+        "win64": "electron-builder --win --x64",
+        "afterSign": "scripts/notarize.js"
+    },
+    "build": {
+        "productName": "python教程",
+        "appId": "com.chepp.kukechen",
+        "copyright": "kukechen",
+        "directories": {
+            "output": "build"
+        },
+        "nsis": {
+            "oneClick": false,
+            "allowElevation": true,
+            "allowToChangeInstallationDirectory": true,
+            "installerIcon": "./build/icons/icon.ico",
+            "uninstallerIcon": "./build/icons/icon.ico",
+            "installerHeaderIcon": "./build/icons/icon.ico",
+            "createDesktopShortcut": true,
+            "createStartMenuShortcut": true,
+            "shortcutName": "chepp"
+        },
+        "publish": [],
+        "files": [
+            "dist",
+            "html",
+            "package.json"
+        ],
+        "win": {
+            "icon": "./build/icons/icon.ico",
+            "target": [
+                {
+                    "target": "nsis",
+                    "arch": [
+                        "ia32"
+                    ]
+                }
+            ]
+        },
+        "electronDownload": {
+            "cache": "download/electron/Cache",
+            "mirror": "https://cdn.npmmirror.com/binaries/electron/",
+            "customDir": "17.1.2"
+        }
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "electron": "^17.4.7",
+        "electron-builder": "^22.10.5",
+        "electron-reload": "^2.0.0-alpha.1",
+        "webpack": "^5.38.1",
+        "webpack-cli": "^4.7.0"
+    },
+    "dependencies": {
+        "@electron/get": "^1.14.1",
+        "iconv-lite": "^0.6.3",
+        "log4js": "^6.4.2",
+        "moment": "^2.29.1",
+        "tsc": "^2.0.4",
+        "typescript": "^4.6.2"
+    },
+    "config": {}
+}
